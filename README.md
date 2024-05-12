@@ -82,7 +82,7 @@ We would like to thank the following individuals and organizations for their con
 
 - **Open-source Libraries**: We are grateful to the developers of [Library Name] for providing [description of how it helped].
 - **API Providers**: We would like to acknowledge SmartAPI for providing the API used in this project.
-- **Online Resources**: The tutorials and documentation from Angelone were instrumental in helping us understand api integration.
+- **Online Resources**: The tutorials and documentation from Angelone were instrumental in helping us understand api integration .
 
 ## Contact
 
