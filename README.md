@@ -26,7 +26,7 @@ Before running Trade Master, ensure you have the following prerequisites install
 1. Clone this repository:
 
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/ANANDAPADMANABHA/Trade-master.git
    ```
 
 2. Navigate to the project directory:
