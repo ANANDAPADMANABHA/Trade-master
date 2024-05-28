@@ -1,8 +1,8 @@
 from SmartApi import SmartConnect
 import os
 from pyotp import TOTP
-from typing import List, Dict, Union, Optional, Tuple
-from utils import token_lookup
+from typing import List, Dict, Union, Optional
+from src.trademaster.utils import token_lookup
 import pandas as pd
 import time
 import datetime as dt
@@ -12,7 +12,7 @@ import json
 
 class AngelOneClient():
     def __init__(self) -> None:
-        self.api_key: str = os.environ.get('CLIENT_ID')
+        self.api_key: str = os.environ.get('API_KEY')
         self.client_id: str = os.environ.get('CLIENT_ID')
         self.password: str = os.environ.get('PASSWORD')
         self.token: str = os.environ.get('TOKEN')

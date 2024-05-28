@@ -2,10 +2,10 @@ import json
 import time
 import datetime as dt
 from typing import List, Dict, Union, Optional, Tuple
-from utils import token_lookup
+from src.trademaster.utils import token_lookup
 import pandas as pd
 
-from broker import AngelOneClient
+from src.trademaster.broker import AngelOneClient
 
 class OpeningRangeBreakout(AngelOneClient):
     """A class to implement Opening Range Breakout trading strategy."""
@@ -26,10 +26,10 @@ class OpeningRangeBreakout(AngelOneClient):
             None
         """
         quantity = 1
-        if positions is not None:
+        if not positions.empty:
             tickers = [i for i in tickers if i +
                        "-EQ" not in positions["tradingsymbol"].to_list()]
-        if open_orders is not None:
+        if not open_orders.empty:
             tickers = [i for i in tickers if i +
                        "-EQ" not in open_orders["tradingsymbol"].to_list()]
 
