@@ -1,0 +1,68 @@
+exclude: 'deployment/.*|.*/migrations/.*|.*/__init__.py|.*/asgi.py|.*/wsgi.py|.github/.*|.*/tests/.*|.*/tests.py|.*/settings.py|Readme.md|requirements.py|manage.py|apps.py'
+
+repos:
+  # General hooks from pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml # Check YAML file formatting
+      - id: end-of-file-fixer # Ensure files end with a newline character
+      - id: trailing-whitespace # Check for trailing whitespace at line ends
+      - id: check-added-large-files # Prevent addition of large files
+      - id: detect-private-key # Detect private keys in code
+      - id: check-ast # Verify Python AST (Abstract Syntax Tree)
+      - id: check-case-conflict # Check for case conflicts in filenames
+      - id: check-docstring-first # Ensure docstrings appear first in Python files
+      - id: check-merge-conflict # Prevent Git merge conflicts
+      - id: debug-statements # Detect and prevent debugging statements
+      - id: double-quote-string-fixer # Replaces double_quoted strings with single quoted strings.
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black # Automatically format code using Black
+        language_version: python3.9
+        args: ['--line-length', '79', '--skip-string-normalization']
+
+  # Python imports sorting with isort
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort # Sort Python imports using isort
+        language_version: python3.9
+        args: [
+            '--profile',
+            'black', # Use Black's import style
+            '--combine-as', # Combine imports
+            '--line-length',
+            '79', # Maximum line length
+          ]
+
+  # Remove unused imports and variables with autoflake
+  - repo: https://github.com/humitos/mirrors-autoflake.git
+    rev: v1.1
+    hooks:
+      - id: autoflake # Remove unused imports and variables with autoflake
+        args: [
+            '--remove-all-unused-imports', # Remove unused imports
+            '--recursive', # Process directories recursively
+            '--remove-unused-variable', # Remove unused variables
+            '--in-place', # Modify files in place
+            '--expand-star-imports', # Expand star imports
+          ]
+
+  # Static code analysis with Bandit
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ['-iii', '-ll'] # Configure Bandit options
+
+  # Code linting with Flake8
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies: [
+            'flake8-print', # Additional Flake8 dependency for checking print statements
+          ]

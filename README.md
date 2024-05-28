@@ -1,8 +1,8 @@
 # Trade Master: Algorithmic Trading Bot
 
 Trade Master is an advanced algorithmic trading bot designed to automate the execution of various trading strategies in financial markets.
-Integrated with SmartAPI, Trade Master accesses real-time market data from Angel One broker, allowing users to execute trades seamlessly. 
-With support for customizable trading strategies, real-time monitoring, risk management features, and platform compatibility, 
+Integrated with SmartAPI, Trade Master accesses real-time market data from Angel One broker, allowing users to execute trades seamlessly.
+With support for customizable trading strategies, real-time monitoring, risk management features, and platform compatibility,
 Trade Master empowers traders to optimize their trading strategies, manage risks effectively, and capitalize on market opportunities with confidence
 
 ## Features
