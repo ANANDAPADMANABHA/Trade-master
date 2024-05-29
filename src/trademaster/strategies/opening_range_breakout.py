@@ -41,7 +41,7 @@ class OpeningRangeBreakout(AngelOneClient):
                 for i in tickers
                 if i + '-EQ' not in positions['tradingsymbol'].to_list()
             ]
-        if not open_orders.empty:
+        if open_orders:
             tickers = [
                 i
                 for i in tickers
