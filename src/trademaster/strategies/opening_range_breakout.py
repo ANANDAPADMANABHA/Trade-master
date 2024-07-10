@@ -5,7 +5,7 @@ from typing import Dict, List, Optional
 import pandas as pd
 
 from src.trademaster.broker import AngelOneClient
-from src.trademaster.utils import token_lookup
+from src.trademaster.utils import token_lookup,Colors
 
 
 class OpeningRangeBreakout(AngelOneClient):
@@ -34,14 +34,15 @@ class OpeningRangeBreakout(AngelOneClient):
         Returns:
             None
         """
-        quantity = 1
+        quantity = 3
         if not positions.empty:
             tickers = [
                 i
                 for i in tickers
                 if i + '-EQ' not in positions['tradingsymbol'].to_list()
             ]
-        if open_orders:
+        if not open_orders.empty: 
+            '''proceed with the tickers that are not in open orders'''
             tickers = [
                 i
                 for i in tickers
@@ -71,9 +72,11 @@ class OpeningRangeBreakout(AngelOneClient):
                 df_data['avg_vol'] = (
                     df_data['volume'].rolling(10).mean().shift(1)
                 )
+                print('current_volume: ',df_data['volume'].iloc[-1],'average volume: ',df_data['avg_vol'].iloc[-1])
+                
                 if df_data['volume'].iloc[-1] >= df_data['avg_vol'].iloc[-1]:
                     print('ALERT..............!')
-                    print(f'{ticker} has broken the average volume')
+                    print(f'{Colors.GREEN}{ticker} has broken the average volume,{Colors.RESET}')
                     if (
                         df_data['close'].iloc[-1] >= hi_lo_prices[ticker][0]
                         and df_data['low'].iloc[-1] >= hi_lo_prices[ticker][1]
@@ -85,10 +88,10 @@ class OpeningRangeBreakout(AngelOneClient):
                             hi_lo_prices[ticker],
                             quantity,
                         )
-                        print(f'Bought {quantity} stocks of {ticker}')
+                        print(f'{Colors.GREEN}Bought {quantity} stocks of {ticker}{Colors.RESET}')
                     elif (
-                        df_data['close'].iloc[-1] <= hi_lo_prices[ticker][0]
-                        and df_data['high'].iloc[-1] <= hi_lo_prices[ticker][1]
+                        df_data['close'].iloc[-1] <= hi_lo_prices[ticker][1]
+                        and df_data['high'].iloc[-1] <= hi_lo_prices[ticker][0]
                     ):
                         self.place_robo_order(
                             self.instrument_list,
@@ -97,8 +100,8 @@ class OpeningRangeBreakout(AngelOneClient):
                             hi_lo_prices[ticker],
                             quantity,
                         )
-                        print('sold {} stocks of {}'.format(quantity, ticker))
+                        print(f'{Colors.RED}Sold {quantity} stocks of {ticker}{Colors.RESET}')
                 else:
-                    print(f'NO TRADE : {ticker}')
+                    print(f'{Colors.YELLOW}NO TRADE : {ticker}{Colors.RESET}')
             except Exception as e:
                 print(e)
