@@ -1,6 +1,7 @@
 ORB_TICKERS = [
     'POWERGRID',
     'SBIN',
+    'ABFRL',
     'TATASTEEL',
     'HINDALCO',
     'UPL',
