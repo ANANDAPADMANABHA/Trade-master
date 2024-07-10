@@ -6,7 +6,7 @@ app = Celery('trade_tasks', broker='redis://localhost:6379/0')
 
 
 app.conf.update(
-    timezone='Asia/Dubai',  # Set your local timezone here
+    timezone='Asia/Calcutta',  # Set your local timezone here
     enable_utc=True,  # Ensure UTC is enabled
 )
 app.autodiscover_tasks(['cronjobs'])
