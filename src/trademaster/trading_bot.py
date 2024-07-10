@@ -31,11 +31,10 @@ class TradeMaster(OpeningRangeBreakout):
             dt.datetime.now().strftime('%Y-%m-%d') + ' 15:30', '%Y-%m-%d %H:%M'
         ):
             print('starting passthrough at {}'.format(dt.datetime.now()))
-            positions = pd.DataFrame(self.smart_api.position()['data'])
-            open_orders = self.get_open_orders()
-            self.orb_strat(ORB_TICKERS, hi_lo_prices, positions, open_orders)
+            try: 
+                positions = pd.DataFrame(self.smart_api.position()['data'])
+                open_orders = self.get_open_orders()
+                self.orb_strat(ORB_TICKERS, hi_lo_prices, positions, open_orders)
+            except Exception as e:
+                print(e)
             time.sleep(300 - ((time.time() - starttime) % 300.0))
-
-
-trade = TradeMaster()
-trade.make_some_money()
