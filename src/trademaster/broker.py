@@ -91,12 +91,10 @@ class AngelOneClient:
             'exchange': exchange,
             'ordertype': 'LIMIT',
             'producttype': 'BO',
-            'price': ltp + 1 if buy_sell == 'BUY' else ltp - 1,
+            'price': ltp ,
             'duration': 'DAY',
-            'stoploss': (ltp - prices[0])
-            if buy_sell == 'BUY'
-            else (prices[1] - ltp),
-            'squareoff': round(ltp * 0.05, 1),
+            'stoploss': round(ltp * 0.01, 1), 
+            'squareoff': round(ltp * 0.01, 1),
             'quantity': quantity,
         }
         try:
