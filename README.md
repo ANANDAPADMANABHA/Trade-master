@@ -52,8 +52,8 @@ Before running Trade Master, ensure you have the following prerequisites install
    PASSWORD = '{{PASSWORD}}'
    TOKEN = '{{TOKEN}}'
    ```
-
-### Usage: Follow the steps ans the bot will atumatically run everyday 9:20
+### To run locally open 3 terminals
+### Usage: Follow the steps and the bot will atumatically run everyday 9:20
 
 Start Redis server:
 
