@@ -53,12 +53,24 @@ Before running Trade Master, ensure you have the following prerequisites install
    TOKEN = '{{TOKEN}}'
    ```
 
-### Usage
+### Usage: Follow the steps ans the bot will atumatically run everyday 9:20
 
-Run the main script to start Trade Master:
+Start Redis server:
 
 ```bash
-python trade_master.py
+redis-server
+```
+
+Run celery beat:
+
+```bash
+celery -A cronjobs beat --loglevel=info
+```
+
+Run worker:
+
+```bash
+celery -A cronjobs worker --loglevel=info
 ```
 
 ## Contributing
