@@ -19,6 +19,8 @@ class TradeMaster(OpeningRangeBreakout):
         data_0920 = self.hist_data_0920(
             ORB_TICKERS, 4, 'FIVE_MINUTE', self.instrument_list
         )
+        
+        '''attaining the opening range - High and low of first 5 min candle'''
         for ticker in ORB_TICKERS:
             hi_lo_prices[ticker] = [
                 data_0920[ticker]['high'].iloc[-1],
@@ -28,7 +30,7 @@ class TradeMaster(OpeningRangeBreakout):
         print(df)
 
         while dt.datetime.now() < dt.datetime.strptime(
-            dt.datetime.now().strftime('%Y-%m-%d') + ' 15:30', '%Y-%m-%d %H:%M'
+            dt.datetime.now().strftime('%Y-%m-%d') + ' 15:00', '%Y-%m-%d %H:%M'
         ):
             print('starting passthrough at {}'.format(dt.datetime.now()))
             try: 
@@ -38,3 +40,4 @@ class TradeMaster(OpeningRangeBreakout):
             except Exception as e:
                 print(e)
             time.sleep(300 - ((time.time() - starttime) % 300.0))
+        print('see you tomorrow')
